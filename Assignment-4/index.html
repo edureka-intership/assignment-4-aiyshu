@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment-4</title>
+    <style>
+         body{
+            min-height: 100vh;
+            background: linear-gradient(to left , #f5a1bb, #df9df5);
+            color: black;
+            }
+
+            div{
+                border: 2px solid black; padding: 5px; font-size: 20px;
+            }
+    </style>
+</head>
+<body>
+    <div>
+        <h4> Question-1. Please find customer's rating data for multiple restaurants as:<br/>
+            ⮚ ratingData = [<br/>
+            {restaurant: 'KFC', rating:5},<br/>
+            {restaurant: 'Burger King', rating:4},<br/>
+            {restaurant: 'KFC', rating:3},<br/>
+            {restaurant: 'Domino', rating:2},<br/>
+            {restaurant: 'Subway', rating:3},<br/>
+            {restaurant: 'Domino', rating:1},<br/>
+            {restaurant: 'Subway', rating:4},<br/>
+            {restaurant: 'Pizza Hut', rating:5}<br/>
+            ] </h4> <br>
+        a. Calculate the Average rating for all the restaurants.<br/> 
+        b. List of all restaurants with average rating greater than or equal to 4.
+
+        <br/>
+        <br/>
+    </div>
+    <br/>
+    <div class="div2">
+        <h4 style="text-align: center; font-size: 30px;"> &lt; Go to Console to see the output &gt; </h4>
+    </div>
+    
+    <!-- Scripts - solution -->
+    <script>
+        // a. The Average rating for all the restaurants
+        const ratingData = [
+            { restaurant: 'KFC', rating: 5 },
+            { restaurant: 'Burger King', rating: 4 },
+            { restaurant: 'KFC', rating: 3 },
+            { restaurant: 'Domino', rating: 2 },
+            { restaurant: 'Subway', rating: 3 },
+            { restaurant: 'Domino', rating: 1 },
+            { restaurant: 'Subway', rating: 4 },
+            { restaurant: 'Pizza Hut', rating: 5 }
+        ];
+
+        var restraName = Array.from(new Set(ratingData.map(value=>value.restaurant)));
+        let averageRating = [];
+        ratingData.forEach(element => {
+            let sum=0;
+            let count=0;
+            let average=0;
+            ratingData.forEach(value => {
+                if(value.restaurant === element.restaurant){
+                    sum+=value.rating;
+                    count++;
+                };
+            });
+            average = (sum/count);
+            averageRating.push({"restaurant":element.restaurant,"average rating":average});
+        });
+        let restaurantRating = [];
+        restraName.forEach(elements => {
+            let index=0;
+            averageRating.forEach(value =>{
+                if(value.restaurant===elements){
+                    index=averageRating.indexOf(value);
+                };
+            });
+            restaurantRating.push(averageRating[index]);
+        });
+        console.log("the Average rating for all the restaurants:",restaurantRating);
+
+        // b. All restaurants with average rating greater than or equal to 4
+        let ratingAbove_4 = restaurantRating.filter(value => value["average rating"]>=4);
+        console.log("rating above 4 are:",ratingAbove_4);
+    </script>
+</body>
+</html>
